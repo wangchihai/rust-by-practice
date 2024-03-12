@@ -15,7 +15,7 @@ fn main() {
 
     y = x;
     
-    let z = 10; // 这里 z 的类型是? 
+    let z = 10; // 这里 z 的类型是? i32
 }
 ```
 
@@ -24,7 +24,7 @@ fn main() {
 
 // 填空
 fn main() {
-    let v: u16 = 38_u8 as __;
+    let v: u16 = 38_u8 as u16;
 }
 ```
 
