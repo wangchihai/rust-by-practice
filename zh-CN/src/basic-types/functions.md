@@ -1,4 +1,5 @@
 # 函数
+> panic 和loop 都会使函数没有返回值(发散函数)
 1. 🌟🌟🌟
 ```rust,editable
 
@@ -10,8 +11,8 @@ fn main() {
     assert_eq!(s, 3);
 }
 
-fn sum(x, y: i32) {
-    x + y;
+fn sum(x:i32, y: i32)->i32 {
+    x + y
 }
 ```
 
@@ -23,7 +24,7 @@ fn main() {
 }
 
 // 使用另一个类型来替代 i32
-fn print() -> i32 {
+fn print() -> () {
    println!("hello,world");
 }
 ```
@@ -39,7 +40,7 @@ fn main() {
 
 fn never_return() -> ! {
     // 实现这个函数，不要修改函数签名!
-    
+    panic!("I return nothing!") // 这个位置要注意,
 }
 ```
 
@@ -65,8 +66,19 @@ fn get_option(tp: u8) -> Option<i32> {
 }
 
 // 使用三种方法实现以下发散函数
+// 1️⃣
+fn never_return_fn() -> () {
+    println!("never");
+}
+// 2️⃣
 fn never_return_fn() -> ! {
-    
+    panic!("never");
+}
+// 3️⃣
+fn never_return_fn() -> ! {
+    loop {
+       println!("never"); 
+    }
 }
 ```
 
@@ -75,7 +87,7 @@ fn never_return_fn() -> ! {
 
 fn main() {
     // 填空
-    let b = __;
+    let b = false;
 
     let _v = match b {
         true => 1,

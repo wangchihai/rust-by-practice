@@ -36,7 +36,7 @@ fn main() {
 
 // 修改 `assert_eq!` 让代码工作
 fn main() {
-    let x = 5;
+    let x_u32 = 5;
     assert_eq!("u32".to_string(), type_of(&x));
 }
 
@@ -51,29 +51,30 @@ fn type_of<T>(_: &T) -> String {
 
 // 填空，让代码工作
 fn main() {
-    assert_eq!(i8::MAX, __); 
-    assert_eq!(u8::MAX, __); 
+    assert_eq!(i8::MAX, 127); 
+    assert_eq!(u8::MAX, 255); 
 }
 ```
 
-5. 🌟🌟 
+5. 🌟🌟 ❌
+> 几种计算方式 wrapping_*,  checked_*, overflowing_*, saturation_* 
 ```rust,editable
 
 // 解决代码中的错误和 `panic`
 fn main() {
-   let v1 = 251_u8 + 8;
-   let v2 = i8::checked_add(251, 8).unwrap();
+   let v1 = 251_u16 + 8;
+   let v2 = u16::checked_add(251, 8).unwrap();
    println!("{},{}",v1,v2);
 }
 ```
 
-6. 🌟🌟
+6. 🌟🌟 
 ```rust,editable
 
 // 修改 `assert!` 让代码工作
 fn main() {
     let v = 1_024 + 0xff + 0o77 + 0b1111_1111;
-    assert!(v == 1579);
+    assert!(v == 1597);
 }
 ```
 
@@ -83,9 +84,9 @@ fn main() {
 
 ```rust,editable
 
-// 将 ? 替换成你的答案
+// 将 ? 替换成你的答案  浮点数默认是f64
 fn main() {
-    let x = 1_000.000_1; // ?
+    let x = 1_000.000_1; // f64
     let y: f32 = 0.12; // f32
     let z = 0.01_f64; // f64
 }
@@ -101,19 +102,20 @@ fn main() {
 ```
 
 ### 序列Range
-9. 🌟🌟 两个目标: 1. 修改 `assert!` 让它工作 2. 让 `println!` 输出: 97 - 122
+9. 🌟🌟 两个目标: 1. 修改 `assert!` 让它工作 2. 让 `println!` 输出: 97 - 122 
+> `c as u8` 可以将字符转换成ascall码
 
 ```rust,editable
 fn main() {
     let mut sum = 0;
-    for i in -3..2 {
+    for i in -3..=2 {
         sum += i
-    }
+    } 
 
     assert!(sum == -3);
 
     for c in 'a'..='z' {
-        println!("{}",c);
+        println!("{}",c as u8);
     }
 }
 ```
@@ -124,14 +126,15 @@ fn main() {
 // 填空
 use std::ops::{Range, RangeInclusive};
 fn main() {
-    assert_eq!((1..__), Range{ start: 1, end: 5 });
-    assert_eq!((1..__), RangeInclusive::new(1, 5));
+    assert_eq!((1..5), Range{ start: 1, end: 5 }); // (1..5) {start:1, end:5} 左闭右开
+    assert_eq!((1..=5), RangeInclusive::new(1, 5)); // 闭空间
 }
 ```
 
 ### 计算
 
 11. 🌟 
+> 位操作
 ```rust,editable
 
 // 填空，并解决错误
